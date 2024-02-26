@@ -2,7 +2,6 @@ import styled from "styled-components";
 import palette from "../../styles/palette";
 
 export const HeaderBlock = styled.header`
-  border: 1px solid red;
   border-bottom: 1px gray solid;
 
   width: 100%;
