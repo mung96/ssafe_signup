@@ -5,48 +5,48 @@ import { checkEmail,checkPassword } from "../../utils/validator";
 export const SignUpForm = () => {
     //이메일
     const [email,setEmail] = useState("");
-    const [emailValidateMessage,setEmailValidateMessage] = useState("");
+    const [isEmailValid,setIsEmailValid] = useState(true);
     
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
     }
     useEffect(()=>{
         if(!checkEmail(email)){
-            setEmailValidateMessage("유효하지 않은 이메일 형식입니다.")
+            setIsEmailValid(false);
         }
         if(checkEmail(email)||!email){
-            setEmailValidateMessage("");
+            setIsEmailValid(true);
         }
     },[email])
 
     //패스워드
     const [password,setPassword] = useState("");
-    const [passwordValidateMessage,setPasswordValidateMessage] = useState("");
+    const [isPasswordValid,setIsPasswordValid] = useState(true);
     
     const handlePasswordChange = (e) => {
       setPassword(e.target.value);
     }
     useEffect(()=>{
         if(!checkPassword(password)){
-            setPasswordValidateMessage("유효하지 않은 비밀번호 형식입니다.")
+            setIsPasswordValid(false);
         }
         if(checkPassword(password)||!password){
-            setPasswordValidateMessage("");
+            setIsPasswordValid(true);
         }
     },[password])
 
     //패스워드 확인
     const [passwordConfirm,setPasswordConfirm] = useState("");
-    const [passwordConfirmValidateMessage,setPasswordConfirmValidateMessage] = useState("");
+    const [isPasswordConfirmValid,setIsPasswordConfirmValid] = useState(true);
     const handlePasswordConfirmChange = (e) => {
         setPasswordConfirm(e.target.value);
     }
     useEffect(()=>{
         if(password!==passwordConfirm){
-            setPasswordConfirmValidateMessage("비밀번호가 일치하지 않습니다.");
+            setIsPasswordConfirmValid(false);
         }
         if(password===passwordConfirm||!passwordConfirm){
-            setPasswordConfirmValidateMessage("");
+            setIsPasswordConfirmValid(true);
         }
     },[password,passwordConfirm]); 
 
@@ -58,7 +58,7 @@ export const SignUpForm = () => {
                 placeholder="ssafe11@gmail.com"
                 onChange={handleEmailChange}
             />
-            <span>{emailValidateMessage}</span>
+            <span>{!isEmailValid&&"유효하지 않은 이메일 형식입니다."}</span>
         </InputGroup>
         <InputGroup>
             <label htmlFor="password">비밀번호</label>
@@ -68,7 +68,7 @@ export const SignUpForm = () => {
                 type="password"
                 onChange={handlePasswordChange}
             />
-            <span>{passwordValidateMessage}</span>
+            <span>{!isPasswordValid&&"유효하지 않은 비밀번호 형식입니다."}</span>
         </InputGroup>
         <InputGroup>
             <label htmlFor="passwordConfirm">비밀번호 확인</label>
@@ -78,7 +78,7 @@ export const SignUpForm = () => {
                 type="password"
                 onChange={handlePasswordConfirmChange}
             />
-            <span>{passwordConfirmValidateMessage}</span>
+            <span>{!isPasswordConfirmValid&&"비밀번호가 일치하지 않습니다."}</span>
         </InputGroup>
         
         <Button>회원가입</Button>
