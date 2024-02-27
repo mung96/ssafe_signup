@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import {SignUpFormBlock, InputGroup, Button } from "./SignUpForm.element"
 import { checkEmail,checkPassword } from "../../utils/validator";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
+    const navigator = useNavigate()
     //이메일
     const [email,setEmail] = useState("");
     const [isEmailValid,setIsEmailValid] = useState(false);
@@ -17,7 +19,6 @@ export const SignUpForm = () => {
         if(checkEmail(email)||!email){
             setIsEmailValid(true);
         }
-        console.log("Email:" ,isEmailValid,"내용: ",email);
     },[email])
 
     //패스워드
@@ -66,6 +67,18 @@ export const SignUpForm = () => {
         }      
     },[isEmailValid,isPasswordValid,isPasswordConfirmValid])
 
+
+    const handleBtnClick=(e)=>{
+        e.preventDefault();
+        if(isActive){
+            alert("회원가입을 축하합니다.");
+            navigator('/');
+        }
+        if(!isActive){
+            alert("아직 입력하지 않은 정보가 있어요.");
+        }
+    }
+
     return <SignUpFormBlock>
         <InputGroup>
             <label htmlFor="email">이메일</label>
@@ -97,6 +110,6 @@ export const SignUpForm = () => {
             <span>{!isPasswordConfirmValid&&"비밀번호가 일치하지 않습니다."}</span>
         </InputGroup>
         
-        <Button active={isActive}>회원가입</Button>
+        <Button active={isActive} onClick={handleBtnClick}>회원가입</Button>
     </SignUpFormBlock>
 }

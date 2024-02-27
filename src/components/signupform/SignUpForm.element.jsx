@@ -43,6 +43,7 @@ export const InputGroup = styled.div`
 export const Button = styled.button`
     flex-direction: column;
     width:100%;
+    disabled:true;
 
     background-color:${palette.fontGray};
     color:white;
@@ -53,10 +54,14 @@ export const Button = styled.button`
 
     border-radius: 2rem;     
     border:none;
-    
+    cursor:pointer;
+   
+
     ${(props)=>
         props.active &&
         css`
             background-color:${palette.fontBlue};
         `}
+    }
+
 `
