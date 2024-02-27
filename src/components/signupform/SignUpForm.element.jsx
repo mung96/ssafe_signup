@@ -1,5 +1,7 @@
 import styled,{css} from "styled-components";
 import palette from "../../styles/palette";
+import openEye from "../../assets/openeye.svg";
+import closeEye from "../../assets/closeeye.svg";
 
 export const SignUpFormBlock = styled.form`
     height:100%;
@@ -27,13 +29,24 @@ export const InputGroup = styled.div`
     input{
         padding: 0.8rem 1rem;
         line-height: 1.2rem;
+        position: relative;
         
         border: solid 1px grey;
         border-radius: 2rem;
+
+        background-image: ${closeEye};
         &:focus{
             outline:none;
             border: solid 1px ${palette.skyblue};
         }
+    }
+    img{
+        cursor: pointer;
+        width: 2rem;
+        height:2rem;
+        position:absolute;
+        margin-left: 22.5rem;
+        margin-top: 2.2rem;
     }
 
     span{
