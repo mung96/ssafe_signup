@@ -8,20 +8,18 @@ const SignUpTemplate = styled.div`
 
     justify-content:center;
     align-items:center;
-    gap:1rem;
+    gap:5rem;
 `
 const Title = styled.span`
-    width:27rem;
+    width: 30rem;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 1rem;
 
     font-size: 2.5rem;
     font-weight: 700;
-    
-    margin-top:1rem;
 `
 
 const SignUpPage = () =>{

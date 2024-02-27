@@ -3,65 +3,62 @@ import palette from "../../styles/palette";
 
 export const SignUpFormBlock = styled.form`
     height:100%;
-    width:27rem;
+    width:30rem;
     
     display:flex;
     flex-direction:column;
     align-items: center;
     justify-content:center;
-    gap: 1.2rem;
+    gap: 1.8rem;
 `
 
 export const InputGroup = styled.div`
     display:flex;
     flex-direction: column;
-    width:100%;
-    gap:0.3rem;
-    label{
+    width:85%;
 
+    label{
+        padding-left:0.8rem;
+        margin-bottom: 0.5rem;
+
+        font-weight: 600;
     }
 
     input{
-        padding: 0.8rem 0.8rem;
-        line-height: 1rem;
-        height: 3 rem;
+        padding: 0.8rem 1rem;
+        line-height: 1.2rem;
         
         border: solid 1px grey;
         border-radius: 2rem;
         &:focus{
             outline:none;
-            border: solid 1px ${palette.fontBlue};
+            border: solid 1px ${palette.skyblue};
         }
     }
 
     span{
-        color:red;
         height: 0.5rem;
+        padding-left:0.8rem;
+        margin-top: 0.3rem;
+
+        color:red;
     }
 `
 
 export const Button = styled.button`
-    flex-direction: column;
-    width:100%;
-    disabled:true;
-
-    background-color:${palette.fontGray};
-    color:white;
-
-    padding: 0.8rem 0.8rem;
-    line-height: 1rem;
+    width:85%;
     height: 3 rem;
+    padding: 0.8rem 0.8rem;
+    margin-top: 3rem;
 
     border-radius: 2rem;     
     border:none;
+
+    background-color:${(props)=>props.active?palette.btnBlue:palette.backGray};
+    color:white;
+    
+    font-weight:700;
+    font-size:1.4rem;
+
     cursor:pointer;
-   
-
-    ${(props)=>
-        props.active &&
-        css`
-            background-color:${palette.fontBlue};
-        `}
-    }
-
 `
