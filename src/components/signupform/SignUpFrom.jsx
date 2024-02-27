@@ -109,7 +109,6 @@ export const SignUpForm = () => {
             />
             <span>{!isPasswordConfirmValid&&"비밀번호가 일치하지 않습니다."}</span>
         </InputGroup>
-        
         <Button active={isActive} onClick={handleBtnClick}>회원가입</Button>
     </SignUpFormBlock>
 }
