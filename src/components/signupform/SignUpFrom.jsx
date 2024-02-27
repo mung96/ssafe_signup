@@ -1,8 +1,8 @@
 import {SignUpFormBlock, InputGroup, Button } from "./SignUpForm.element"
 
 export const SignUpForm = () => {
+
     return <SignUpFormBlock>
-      
         <InputGroup>
             <label htmlFor="email">이메일</label>
             <input 
