@@ -36,6 +36,7 @@ export const InputGroup = styled.div`
 
     span{
         color:red;
+        height: 0.5rem;
     }
 `
 
