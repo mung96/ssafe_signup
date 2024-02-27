@@ -5,7 +5,7 @@ import { checkEmail,checkPassword } from "../../utils/validator";
 export const SignUpForm = () => {
     //이메일
     const [email,setEmail] = useState("");
-    const [isEmailValid,setIsEmailValid] = useState(true);
+    const [isEmailValid,setIsEmailValid] = useState(false);
     
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
@@ -17,11 +17,12 @@ export const SignUpForm = () => {
         if(checkEmail(email)||!email){
             setIsEmailValid(true);
         }
+        console.log("Email:" ,isEmailValid,"내용: ",email);
     },[email])
 
     //패스워드
     const [password,setPassword] = useState("");
-    const [isPasswordValid,setIsPasswordValid] = useState(true);
+    const [isPasswordValid,setIsPasswordValid] = useState(false);
     
     const handlePasswordChange = (e) => {
       setPassword(e.target.value);
@@ -37,7 +38,7 @@ export const SignUpForm = () => {
 
     //패스워드 확인
     const [passwordConfirm,setPasswordConfirm] = useState("");
-    const [isPasswordConfirmValid,setIsPasswordConfirmValid] = useState(true);
+    const [isPasswordConfirmValid,setIsPasswordConfirmValid] = useState(false);
     const handlePasswordConfirmChange = (e) => {
         setPasswordConfirm(e.target.value);
     }
@@ -49,6 +50,21 @@ export const SignUpForm = () => {
             setIsPasswordConfirmValid(true);
         }
     },[password,passwordConfirm]); 
+
+
+    const [isActive,setIsActive] = useState(false);
+
+    useEffect(()=>{
+        if(isEmailValid&&isPasswordValid&&isPasswordConfirmValid){
+            setIsActive(true);
+        } 
+        if(!isEmailValid||!isPasswordValid||!isPasswordConfirmValid){
+            setIsActive(false);
+        } 
+        if(!email||!password||!passwordConfirm){
+            setIsActive(false);
+        }      
+    },[isEmailValid,isPasswordValid,isPasswordConfirmValid])
 
     return <SignUpFormBlock>
         <InputGroup>
@@ -81,6 +97,6 @@ export const SignUpForm = () => {
             <span>{!isPasswordConfirmValid&&"비밀번호가 일치하지 않습니다."}</span>
         </InputGroup>
         
-        <Button>회원가입</Button>
+        <Button active={isActive}>회원가입</Button>
     </SignUpFormBlock>
 }

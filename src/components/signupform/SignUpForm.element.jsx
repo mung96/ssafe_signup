@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 import palette from "../../styles/palette";
 
 export const SignUpFormBlock = styled.form`
@@ -42,10 +42,9 @@ export const InputGroup = styled.div`
 
 export const Button = styled.button`
     flex-direction: column;
-    // min-width:10px;
     width:100%;
 
-    background-color:${palette.fontBlue};
+    background-color:${palette.fontGray};
     color:white;
 
     padding: 0.8rem 0.8rem;
@@ -54,8 +53,10 @@ export const Button = styled.button`
 
     border-radius: 2rem;     
     border:none;
-
-    &:hover{
-        background-color:${palette.fontGray};
-    }
-    `
+    
+    ${(props)=>
+        props.active &&
+        css`
+            background-color:${palette.fontBlue};
+        `}
+`
