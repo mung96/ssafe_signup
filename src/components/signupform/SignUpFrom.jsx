@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {SignUpFormBlock, InputGroup, Button } from "./SignUpForm.element"
-import { checkEmail } from "../../utils/validator";
+import { checkEmail,checkPassword } from "../../utils/validator";
 
 export const SignUpForm = () => {
     //이메일
@@ -9,21 +9,46 @@ export const SignUpForm = () => {
     
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
-      console.log(email);
     }
-
     useEffect(()=>{
         if(!checkEmail(email)){
             setEmailValidateMessage("유효하지 않은 이메일 형식입니다.")
         }
-        if(checkEmail(email)){
-            setEmailValidateMessage("");
-        }
-        if(!email){
+        if(checkEmail(email)||!email){
             setEmailValidateMessage("");
         }
     },[email])
 
+    //패스워드
+    const [password,setPassword] = useState("");
+    const [passwordValidateMessage,setPasswordValidateMessage] = useState("");
+    
+    const handlePasswordChange = (e) => {
+      setPassword(e.target.value);
+    }
+    useEffect(()=>{
+        if(!checkPassword(password)){
+            setPasswordValidateMessage("유효하지 않은 비밀번호 형식입니다.")
+        }
+        if(checkPassword(password)||!password){
+            setPasswordValidateMessage("");
+        }
+    },[password])
+
+    //패스워드 확인
+    const [passwordConfirm,setPasswordConfirm] = useState("");
+    const [passwordConfirmValidateMessage,setPasswordConfirmValidateMessage] = useState("");
+    const handlePasswordConfirmChange = (e) => {
+        setPasswordConfirm(e.target.value);
+    }
+    useEffect(()=>{
+        if(password!==passwordConfirm){
+            setPasswordConfirmValidateMessage("비밀번호가 일치하지 않습니다.");
+        }
+        if(password===passwordConfirm||!passwordConfirm){
+            setPasswordConfirmValidateMessage("");
+        }
+    },[password,passwordConfirm]); 
 
     return <SignUpFormBlock>
         <InputGroup>
@@ -41,8 +66,9 @@ export const SignUpForm = () => {
                 name="password"
                 placeholder="비밀번호를 입력하세요."
                 type="password"
+                onChange={handlePasswordChange}
             />
-            <span>유효하지 않은 비밀번호 입니다.</span>
+            <span>{passwordValidateMessage}</span>
         </InputGroup>
         <InputGroup>
             <label htmlFor="passwordConfirm">비밀번호 확인</label>
@@ -50,8 +76,9 @@ export const SignUpForm = () => {
                 name="passwordConfirm"
                 placeholder="비밀번호를 다시 입력해주세요."
                 type="password"
+                onChange={handlePasswordConfirmChange}
             />
-            <span>입력하신 비밀번호와 다릅니다.</span>
+            <span>{passwordConfirmValidateMessage}</span>
         </InputGroup>
         
         <Button>회원가입</Button>
